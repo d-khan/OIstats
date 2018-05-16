@@ -1,0 +1,65 @@
+- Class: meta
+  Course: Foundations for inference
+  Lesson: Confidence intervals
+  Author: Dr Danish Khan
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.4.3
+
+- Class: text
+  Output: Why we need a confidence interval?
+
+- Class: text
+  Output: A point estimate provides a single plausible value for a parameter. However, a point estimate is rarely perfect, usually there is some error in the estimate. Instead of supplying just a point estimate of a parameter, a next logical step would be to provide a plausible range of values for the parameter.
+  
+- Class: text
+  Output: A plausible range of values for the population parameter is called a confidence interval.
+
+- Class: text
+  Output: Using only a point estimate is like fishing in a murky lake with a spear, and using a confidence interval is like fishing with a net. We can throw a spear where we saw a fish, but we will probably miss. On the other hand, if we toss a net in that area, we have a good chance of catching the fish.
+
+- Class: text
+  Output: If we report a point estimate, we probably will not hit the exact population parameter. On the other hand, if we report a range of plausible values - a confidence interval - we have a good shot at capturing the population parameter.
+
+- Class: text
+  Output: For example, let assume that the population mean of YRBSS dataset is not known. If we take 100 random samples and calculate sample mean of average number of days per week that student is physically active and we perform this about 100,000 times and then plot the histogram. 
+
+- Class: figure
+  Output: Look at this histogram. The sample mean is in the range of between 3.2 and 4.6. The CI interval provides us a range of plausible values and it is mostly given as 90%, 95%, 99% and the correct interpretation is that 'we are XX% confident that the population parameter is between the upper and lower ranges.
+  Figure: sample_dist.R
+  FigureType: new
+  
+- Class: text
+  Output: Confidence interval can be defined mathematically as, CI-upper range = point estimate + z * standard error and CI-lower range = point estimate - z * standard error. Here 'Z-score' value changes with respect to the confidence interval.
+
+- Class: text
+  Output: Going back to the histogram. Lets calculate the 95% CI of average number of days per week that student is physically active. The sample mean of days active per week is 3.75 days. The standard error, as estimated using the sample standard deviation, is SE = 2.6/square root of 100 where 100 is a sample size. This gives SE of 0.26 days. Note that the population SD is most cases are not known, that is why we use the sample SD here. The z value of 95% CI is 1.96. The CI (95%) would be 3.75 +/- 1.96 * 0.26 which gives between 3.24 and 4.25. Based on these data, we are about 95% confident that the average days active per week for all YRBSS students (entire population size) was larger than 3.24 but less than 4.25 days.
+  Figure: sample_dist.R
+  FigureType: new
+
+- Class: mult_question
+  Output: What would be the average days active per week for all YRBSS students when the CI level is set to 99%. Assume z score is 2.58. The point estimate is 3.75 and sample SD is 0.26.
+  AnswerChoices: 3.07-4.42;3.0-4.0;not enough data to compute
+  CorrectAnswer: 3.07-4.42
+  AnswerTests: omnitest(correctVal='3.07-4.42')
+  Hint: The formula of CI is CI-upper range = point estimate + z * standard error and CI-lower range = point estimate - z * standard error. Here 'Z-score' value changes with respect to the confidence interval.
+
+- Class: text
+  Output: In summary, as CI confidence level increases, the range of the variable which you are computing also increases. Think back to the analogy about trying to catch a fish, if we want to be more sure that we will catch the fish, we should use a wider net.
+  
+- Class: figure
+  Output: The figure shows that the area between -z and +z increases as absolute z becomes larger. If the confidence level is 99%, we choose z such that 99% of the normal curve is between -z and +z, which corresponds to 0.5% in the lower tail and 0.5% in the upper tail; z = 2:58.
+  Figure: CI_range.R
+  FigureType: new
+
+- Class: text
+  Output: The accuracy of the confidence interval which we have discussed so far is dependent when the point estimate follows the normal distribution model and the estimate of the standard error is sufficiently accurate. When the normal model is not a good fit, we will use alternative distributions that better characterize the sampling distribution which will be discussed in the Central Limit Theorem section.
+
+- Class: text
+  Output: In essence, the following conditions are important to help ensure the sampling distribution of sample x is nearly normal and the estimate of SE sufficiently accurate. a) The sample observations are independent - if the observations are from a simple random sample and consist of fewer than 10% of the population, then they are independent. b) The sample size is large; n >= 30 is a good rule of thumb. c) The population distribution is not strongly skewed. When there are prominent outliers present, the sample should contain at least 100 observations, and in some cases, much more.
+
+- Class: text
+  Output: Another important consideration of confidence intervals is that
+  
+- Class: text
+  Output: the confidence interval only try to capture the population parameter. A confidence interval says nothing about the confidence of capturing individual observations, a proportion of the observation, or about capturing point estimates. Confidence intervals only attempt to capture population parameters.

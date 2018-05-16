@@ -4,6 +4,11 @@
       # throughout the lesson.
 
 install.packages("devtools")
+install.packages('png')
+library(png)
 library(devtools)
 install_github("OpenIntroOrg/openintro-r-package", subdir = "openintro")
 library(openintro)
+
+
+rm(list=ls())

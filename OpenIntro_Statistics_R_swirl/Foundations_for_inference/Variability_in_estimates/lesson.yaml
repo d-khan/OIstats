@@ -1,0 +1,120 @@
+- Class: meta
+  Course: Foundations for inference
+  Lesson: Variability in estimates
+  Author: Dr Danish Khan
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.4.3
+  
+- Class: text
+  Output: Welcome to OpenIntro Statistics Course!
+  
+- Class: text
+  Output: This lesson is about Statistical inference which about understanding the quality of parameter estimates. For example, a classic inferential question is, 'How sure are we that the estimated mean, x bar, is near the true population mean, mu?'
+
+- Class: text
+  Output: For this section, a dataset is loaded in the variable 'yrbss', which represents all 13,583 high school students in the Youth Risk Behavior Surveillance System (YRBSS) from 2013. The dataset can be found at www.cdc.gov/healthyyouth/data/yrbs/data.htm
+  
+- Class: cmd_question
+  Output: Check the YRBSS dataset. There should be 13,583 records (rows). Type 'nrow(yrbss)' without quotes.
+  CorrectAnswer: nrow(yrbss)
+  AnswerTests: omnitest(correctExpr='nrow(yrbss)')
+  Hint: Just type 'nrow(yrbss)
+
+- Class: text
+  Output: Out of 13,583 population of high school students, we took a simple random sample of the population and saved in the variable 'yrbss.samp'. This variable will be used to draw conclusions about the population of YRBSS participants. 
+  
+- Class: cmd_question
+  Output: Count the number of rows of 'yrbss.samp' which represents a simple random sample of 100 high schoolers from the 2013 YRBSS data set. Use nrow(). 
+  CorrectAnswer: nrow(yrbss.samp)
+  AnswerTests: omnitest(correctExpr='nrow(yrbss.samp)')
+  Hint: Just type 'nrow(yrbss.samp)
+
+- Class: cmd_question
+  Output: Lets see the first 6 rows of the dataset. Type 'head(yrbss.samp)' without quotes 
+  CorrectAnswer: head(yrbss.samp)
+  AnswerTests: omnitest(correctExpr='head(yrbss.samp)')
+  Hint: Just type 'head(yrbss.samp)' without quotes.
+
+- Class: text
+  Output: By default the head command display the first 6 rows. You can change the setting by adding a required number of rows as a second parameter in the head() function call. For example, head(yrbss.samp,10) will show the first 10 rows.
+
+- Class: text
+  Output: We would like to estimate the following features of the high schoolers in YRBSS using the sample. a. What is the average height of the YRBSS high schoolers? b. On average, how many days per week are YRBSS high schoolers physically active?
+
+- Class: cmd_question
+  Output: Calculate the sample mean of height variable. Type mean(yrbss.samp$height)
+  CorrectAnswer: mean(yrbss.samp$height)
+  AnswerTests: omnitest(correctExpr='mean(yrbss.samp$height)')
+  Hint: Just type 'mean(yrbss.samp$height)' without quotes.
+
+- Class: text
+  Output: Sidenote. When calculating mean on the variable, it is a good practise to use na.rm=TRUE in the function call otherwise NA will return. When using na.rm=TRUE, you are telling to the function to ignore NA values if present. 
+
+- Class: text
+  Output: The sample mean is called a point estimate of the population mean. If we can only choose one value to estimate the population mean, this is our best guess.
+  
+- Class: mult_question
+  Output: How about if we take a new sample of 100 people and recompute the mean? What will be the mean?
+  AnswerChoices: Exact same sample mean as before; Slightly different mean as before; Exact same population mean
+  CorrectAnswer: Slightly different mean as before
+  AnswerTests: omnitest(correctVal= 'Slightly different mean as before')
+  Hint: Do you think estimates are always exactly the same?
+
+- Class: cmd_question
+  Output: The yrbss.samp2 variable contains a new sample of 100 people. Calculate the mean of height variable.
+  CorrectAnswer: mean(yrbss.samp2$height,na.rm=TRUE)
+  AnswerTests: omnitest(correctExpr='mean(yrbss.samp2$height,na.rm=TRUE)')
+  Hint: mean(yrbss.samp2$height,remove NAs if available)
+  
+- Class: text
+  Output: Now for practise, lets compute the mean of another variable called 'physically_active_7d' which is described as 'number of days physically active for 60+ minutes in the last 7 days'. For comparison, lets take a population mean of the variable.
+
+- Class: cmd_question
+  Output: What is a population mean of the 'active' variable.
+  CorrectAnswer: mean(yrbss$physically_active_7d,na.rm=TRUE)
+  AnswerTests: omnitest(correctExpr='mean(yrbss$physically_active_7d,na.rm=TRUE)')
+  Hint: Take mean of yrbss$physically_active_7d and do not forget to include na.rm = TRUE
+
+- Class: cmd_question
+  Output: Now take a sample mean of the same variable.
+  CorrectAnswer: mean(yrbss.samp$physically_active_7d,na.rm=TRUE)
+  AnswerTests: omnitest(correctExpr='mean(yrbss.samp$physically_active_7d,na.rm=TRUE)')
+  Hint: Take mean of yrbss.samp$physically_active_7d and do not forget to include na.rm = TRUE
+
+- Class: text
+  Output: The population and sample mean comparison suggests that the estimates generally varies from one sample to another, and this sampling variation suggests that our sample mean is close to the population mean, but it will not be exactly equal the population mean.
+  
+# Sampling distribution to add
+
+- Class: text
+  Output: As we have seen that the sample mean has some variabilility around the population mean, which can be quantified using the standard deviation of sample means. The standard deviation of the sample mean tells us how far the typical estimate is away from the actual population mean.
+
+- Class: text
+  Output: The standard deviation also describes the typical error of the point estimate, and for this reason we usually call this standard deviation the standard error (SE) of the estimate. In the current sample of 100 students, the standard error of the sample mean is equal to the population standard deviation divided by the square root of the sample size.
+
+- Class: text
+  Output: One issue in calculating standard error is that the population standard deviation is typically unknown. The solution is to use the point estimate of the standard deviation from the sample. However this estimate tends to be suffciently good when the sample size is at least 30 and the population distribution is not strongly skewed.
+  
+- Class: text
+  Output: When the sample size is smaller than 30, we will need to use a method to account for extra uncertainty in the standard error. Moreover if the skew condition is not met, a larger sample is needed to compensate for the extra skew.
+
+- Class: text
+  Output: Now lets perform some exercises.
+
+- Class: mult_question
+  Output: In the sample of 100 students, the standard deviation of student heights is 0.088 meters. In this case, we can confirm that the observations are independent by checking that the data come from a simple random sample consisting of less than 10% of the population. The sample mean height is 1.70 meters. What is the standard error of the sample mean?
+  AnswerChoices: 1.70/square root of 100 (SE in meters); 0.088/square root of 100 (SE in meters); Not enough information to compute standard error 
+  CorrectAnswer: 0.088/square root of 100 (SE in meters)
+  AnswerTests: omnitest(correctVal= '0.088/square root of 100 (SE in meters)')
+  Hint: Apply standard error formula using sample standard deviation
+
+- Class: mult_question
+  Output: Would you rather use a small sample or a large sample when estimating a parameter?
+  AnswerChoices: Small sample; Large sample
+  CorrectAnswer: Large sample
+  AnswerTests: omnitest(correctVal= 'Large sample')
+  Hint: Larger the sample, better the standard error is
+
+- Class: text
+  Output: Mathematically you can proof this. Lets assume the standard deviation of the mean is 5 and you have two samples (one with sample size of 100 and other with the sample size of 1000). The standard error for the former is (5/square root of 100) which gives 0.5 and the latter gives 0.15.
